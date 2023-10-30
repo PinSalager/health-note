@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h2>Register</h2>
+    
+        <form action="/register_" method="POST">
+            {% csrf_token %}
+        {% comment %} หน้าสำหรับ register {% endcomment %}
+            <label for="">Name</label>
+            <input type="text" name="name" class="name" required>
+<br><br>
+            <label for="">Username</label>
+            <input type="text" name="username" class="username" required>
+<br><br>
+            <label for="">password</label>
+            <input type="password" name="password" class="password" required>
+<br><br>
+            <label for="">Comfirm your password</label>
+            <input type="password" name="com_pass" class="com_pass" required>
+<br><br>
+            <button type="submit">Register</button>
+        </form>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Message:</strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    {% endfor %}
+    <button type="submit"><a href="javascript:history.go(-1)">Back</a></button>
+    </body>
+</html>
