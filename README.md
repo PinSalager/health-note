@@ -8,5 +8,5 @@ http://127.0.0.1:8000/admin
 
 รหัส Admin
 
-ีusername = admin
+username = admin
 password  = 123456
