@@ -13,10 +13,9 @@
         <h1> Welcome to Health...idk..UI...fix this</h1>
 
         {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
-        <h1>Hello {{name}}</h1>
-        <h6>You successfully login</h6>
+        <h1>Hello, {{name}}</h1>
         <button type="submit"><a href="/profile"> Profile</a></button>
-        <br>
+        <br><br>
         <button type="submit"><a href="/logout"> Logout</a></button>
 
         {% else %} <!--ถ้ายังไม่ได้ login ให้โชว์อันนี้-->

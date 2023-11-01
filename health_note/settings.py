@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'debug_toolbar',#อันนี้เป็น toolbar ที่อยู่ด้านขวาถ้าไม่ชอบคอมเม้นไว้ได้หรือเปิดไว้ก็ได้
     'django.contrib.sites',
     'django.contrib.sessions',
+    'django_extensions',
 ]
 
 SITE_ID = 1
