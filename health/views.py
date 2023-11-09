@@ -57,10 +57,12 @@ def log_out(request): #ฟังค์ชันการ logout
 @login_required(login_url="/login")
 def profile(request):
     if request.method == "POST": 
-        height = int(request.POST['height'])
-        weight = int(request.POST['weight'])
+        height = float(request.POST['height'])
+        weight = float(request.POST['weight'])
         bmi = weight / (height / 100 * height / 100)
-        if (bmi < 18.5):
+        if bmi <= 0:
+            heal = "Error"
+        elif bmi < 18.5:
             heal = "น้ำหนักน้อย"
         elif bmi > 18.5 and bmi < 23:
             heal = "สุขภาพปกติ"
