@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>Coming Soon</h1>
-        <button type="submit"><a href="javascript:history.go(-1)">Back</a></button>
-        <script src="" async defer></script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+    {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
+    <form action="/profile" method="POST">
+        {% csrf_token %}
+    {% comment %} หน้าสำหรับ Profile {% endcomment %}
+        <label for="">Height/CM.</label>
+        <input type="text" name="height" class="height" required>
+<br><br>
+        <label for="">Weight/Kg.</label>
+        <input type="text" name="weight" class="weight" required>
+    <button type="submit">Calculate</button>
+    </form>
+    <h3>BMI : {{bmi}}</h3>
+    <h3>สุขภาพ : {{heal}}</h3>
+    <button type="submit"><a href="javascript:history.go(-1)">Back</a></button>
+        {% else %} <!--ถ้ายังไม่ได้ login ให้โชว์อันนี้-->
+        Why Are you Here?
+        {% endif %}
+    
+</body>
 </html>

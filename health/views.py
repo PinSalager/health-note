@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):#ฟังค์ชันการหน้าหลัก
@@ -39,7 +40,6 @@ def loginPage(request): #ฟังค์ชันการ login
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
@@ -54,6 +54,18 @@ def log_out(request): #ฟังค์ชันการ logout
     logout(request)
     messages.success(request, "Logged Out Successfully!!")
     return redirect('home')
-
+@login_required(login_url="/login")
 def profile(request):
-     return render(request, "health/profile.html")
+    if request.method == "POST": 
+        height = int(request.POST['height'])
+        weight = int(request.POST['weight'])
+        bmi = weight / (height / 100 * height / 100)
+        if (bmi < 18.5):
+            heal = "น้ำหนักน้อย"
+        elif bmi > 18.5 and bmi < 23:
+            heal = "สุขภาพปกติ"
+        elif bmi >= 23:
+            heal = "น้ำหนักเกิน"
+        return render(request, "health/profile.html",{"bmi":int(round(bmi)), "heal":heal})
+        
+    return render(request, "health/profile.html",{"bmi":0, "heal":"รอการประมวลผล"})
