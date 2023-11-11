@@ -133,9 +133,10 @@ def workoutplan(request): #เหลือปุ่ม เปิดปิด
             elif stop:
                 continue
             if countforstop == 1:
+                count = round(count, 2)
+                cal = round(distance, 2)
                 break
-        return render(request, "health/workoutplan.html",{"Your distance : ":"%.2f" %distance, "Your burning cal: ":"%.2f" %cal})
-    return render(request, "health/workoutplan.html")
+    return render(request, "health/workoutplan.html",{"Your distance ":distance, "Your burning cal ":cal})
 
 def startandstop(request): #ฟังก์แปลงค่าในปุ่ม
     if request.method == "POST":
