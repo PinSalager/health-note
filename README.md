@@ -10,3 +10,9 @@ http://127.0.0.1:8000/admin
 
 username = admin
 password  = 123456
+
+install(ถ้ามี Error)
+pip install phonenumbers
+pip install opencage
+pip install django-extensions
+python -m pip install django-debug-toolbar

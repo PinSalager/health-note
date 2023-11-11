@@ -20,9 +20,11 @@
     </form>
     <h3>BMI : {{bmi}}</h3>
     <h3>สุขภาพ : {{heal}}</h3>
-    <form action="/home">
-    <button type="submit"><a href="javascript:history.go(-1)">Back</button>
+
+    <form action="/back">
+        <button type="submit">Back</button>
     </form>
+
         {% else %} <!--ถ้ายังไม่ได้ login ให้โชว์อันนี้-->
         Why Are you Here?
         {% endif %}

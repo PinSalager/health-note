@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import phonenumbers
+from phonenumbers import geocoder
+from opencage.geocoder import OpenCageGeocode
+import time
+import math
+
 # Create your views here.
 
 def home(request):#ฟังค์ชันการหน้าหลัก
@@ -15,7 +21,7 @@ def registerPage(request): #ฟังค์ชันการ register
         if request.method == "POST": 
             name = request.POST.get("name")
             username = request.POST.get("username")
-            email = None
+            phonenum = request.POST.get("phonenum")
             password = request.POST.get("password")
             password_com = request.POST.get("com_pass")
 
@@ -27,7 +33,7 @@ def registerPage(request): #ฟังค์ชันการ register
                  messages.error(request, "Password didn't same")
                  return redirect('registerPage')
             #บันทำสร้าง user 
-            myuser = User.objects.create_user(username, email, password)
+            myuser = User.objects.create_user(username, phonenum, password)
             myuser.first_name = name
             myuser.save()
 
@@ -71,3 +77,75 @@ def profile(request):
         return render(request, "health/profile.html",{"bmi":int(round(bmi)), "heal":heal})
         
     return render(request, "health/profile.html",{"bmi":0, "heal":"รอการประมวลผล"})
+
+def fitness(request):
+    return render(request, "health/fitness.html")
+
+@login_required(login_url="/login")
+def workoutplan(request): #เหลือปุ่ม เปิดปิด
+    if request == 'POST':
+        phonenum = request.user.email#เเก้อันนี้เป็นการเอาค่าจาก user phone nuber จาก email
+        #สร้างตัวแปรเอาไว้หาความต่างของระยะทาง
+        previous_lat, previous_lng = None, None
+        rule = True
+        stop = False
+        phone_number = phonenum #เบอร์โทร
+        distance = 0
+        count = 0
+        countforstop = 0
+        while rule:
+            stop, countforstop = (False, 0)#เปลี่ยน (False, 0) startandstop
+            if stop:
+                pep_number = phonenumbers.parse(phone_number)
+
+                # Get location information
+                location = geocoder.description_for_number(pep_number, "en")
+
+                # Get geographic coordinates using OpenCageGeocode
+                key = '7380084ddefb4271aa47fc93d93008c3'
+                geocoder_instance = OpenCageGeocode(key)
+
+                query = str(location)
+                results = geocoder_instance.geocode(query)
+
+                # รับและเก็บค่า ละติจูด และ ละจิจูด
+                lat = results[0]['geometry']['lat']
+                lng = results[0]['geometry']['lng']
+
+                if previous_lat is not None and previous_lng is not None:
+                    # Differences in coordinates
+                    dlat = lat - previous_lat
+                    dlng = lng - previous_lng
+
+                    # Haversine formula
+                    a = math.sin(dlat/2)**2 + math.cos(previous_lat) * math.cos(lat) * math.sin(dlng/2)**2
+                    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+
+                    # Calculate the distance in meters
+                    d = 6378.137 * c * 1000
+                    distance += d
+                    count += 1
+                    cal = 13*count/60
+                    previous_lat, previous_lng = lat, lng
+
+                    time.sleep(1)  # เว้น 1 วิเพื่อให้ค่าเปลี่ยน
+                    continue
+            elif stop:
+                continue
+            if countforstop == 1:
+                break
+        return render(request, "health/workoutplan.html",{"Your distance : ":"%.2f" %distance, "Your burning cal: ":"%.2f" %cal})
+    return render(request, "health/workoutplan.html")
+
+def startandstop(request): #ฟังก์แปลงค่าในปุ่ม
+    if request.method == "POST":
+        check = request.POST['check']
+        if check == "False":
+            return render(request, "health/workoutplan.html", {"check":False})
+        elif check == "True":
+            return render(request, "health/workoutplan.html", {"check":True})
+
+    return render(request, "health/workoutplan.html",{"name":request.user.email})
+
+def back(request):
+    return render(request, "health/index.html")

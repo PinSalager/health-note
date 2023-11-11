@@ -11,9 +11,13 @@
     <body>
 
         <h1> Welcome to Health...idk..UI...fix this</h1>
-
         {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
+        <h1>Hello, {{name}}</h1>
         <button type="submit"><a href="/profile"> Profile</a></button>
+        <br><br>
+        <button type="submit"><a href="/workoutplan"> Workoutplan</a></button>
+        <br><br>
+        <button type="submit"><a href="/fitness"> Nearly fitness</a></button>
         <br><br>
         <button type="submit"><a href="/logout"> Logout</a></button>
 
