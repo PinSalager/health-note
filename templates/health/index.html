@@ -3,21 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Health</title>
+        <title>Health Note</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
     <body>
 
-        <h1> Welcome to Health...idk..UI...fix this</h1>
+        <h1> Welcome to Health Note</h1>
         {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
         <h1>Hello, {{name}}</h1>
         <button type="submit"><a href="/profile"> Profile</a></button>
         <br><br>
         <button type="submit"><a href="/workoutplan"> Workoutplan</a></button>
         <br><br>
-        <button type="submit"><a href="/fitness"> Nearly fitness</a></button>
+        <button type="submit"><a href="/fitness"> Nearby fitness</a></button>
         <br><br>
         <button type="submit"><a href="/logout"> Logout</a></button>
 
