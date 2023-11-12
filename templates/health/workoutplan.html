@@ -25,9 +25,10 @@
         </form>
         {% endif %}
 <br>
-        <p>Your distance : {{distance}}</p>
-        <p>Your burning cal : {{cal}}</p>
-
+    <form action="/workoutplan" method="POST">
+    <p>{{distance}}</p>
+    <p>{{cal}}</p>
+    </form>
         <form action="/back">
             <button type="submit">Back</button>
         </form>

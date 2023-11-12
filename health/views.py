@@ -61,6 +61,7 @@ def log_out(request): #ฟังค์ชันการ logout
     messages.success(request, "Logged Out Successfully!!")
     return redirect('home')
 @login_required(login_url="/login")
+
 def profile(request):
     if request.method == "POST": 
         height = float(request.POST['height'])
@@ -81,21 +82,39 @@ def profile(request):
 def fitness(request):
     return render(request, "health/fitness.html")
 
-@login_required(login_url="/login")
+def checkvar(rule):
+    if rule == "False":
+        return False
+    if rule == "True":
+        return True
+
+def startandstop(request): #ฟังก์แปลงค่าในปุ่ม
+    if request.method == "POST":
+        global mycheck
+        mycheck = None
+        check = request.POST['check']
+        if check == "False":
+            mycheck = checkvar(check)
+            return render(request, "health/workoutplan.html", {"check":False})
+        elif check == "True":
+            mycheck = checkvar(check)
+            return render(request, "health/workoutplan.html", {"check":True})
+
+    return render(request, "health/workoutplan.html",{"name":request.user.email})
+
 def workoutplan(request): #เหลือปุ่ม เปิดปิด
     if request == 'POST':
         phonenum = request.user.email#เเก้อันนี้เป็นการเอาค่าจาก user phone nuber จาก email
         #สร้างตัวแปรเอาไว้หาความต่างของระยะทาง
         previous_lat, previous_lng = None, None
         rule = True
-        stop = False
+        start = mycheck
         phone_number = phonenum #เบอร์โทร
         distance = 0
         count = 0
         countforstop = 0
         while rule:
-            stop, countforstop = (False, 0)#เปลี่ยน (False, 0) startandstop
-            if stop:
+            if start == True:
                 pep_number = phonenumbers.parse(phone_number)
 
                 # Get location information
@@ -129,24 +148,14 @@ def workoutplan(request): #เหลือปุ่ม เปิดปิด
                     previous_lat, previous_lng = lat, lng
 
                     time.sleep(1)  # เว้น 1 วิเพื่อให้ค่าเปลี่ยน
+                    countforstop = 1
                     continue
-            elif stop:
-                continue
-            if countforstop == 1:
-                count = round(count, 2)
-                cal = round(distance, 2)
+            elif start == False and countforstop == 1:
+                countforstop = 0
+                distance = "Your distance is : " + str(round(distance, 2)) + " meter"
+                cal = "calories you burn today :" + str(round(cal, 2)) + " cal"
                 break
-    return render(request, "health/workoutplan.html",{"Your distance ":distance, "Your burning cal ":cal})
-
-def startandstop(request): #ฟังก์แปลงค่าในปุ่ม
-    if request.method == "POST":
-        check = request.POST['check']
-        if check == "False":
-            return render(request, "health/workoutplan.html", {"check":False})
-        elif check == "True":
-            return render(request, "health/workoutplan.html", {"check":True})
-
-    return render(request, "health/workoutplan.html",{"name":request.user.email})
+    return render(request, "health/workoutplan.html",(distance, cal))
 
 def back(request):
     return render(request, "health/index.html")

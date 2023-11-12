@@ -16,3 +16,5 @@ pip install phonenumbers
 pip install opencage
 pip install django-extensions
 python -m pip install django-debug-toolbar
+
+http://127.0.0.1:8000/
