@@ -26,12 +26,12 @@ def registerPage(request): #ฟังค์ชันการ register
             password_com = request.POST.get("com_pass")
 
             if User.objects.filter(username = username): #ถ้ามี username ซ้ำ
-                 messages.error(request, "Username already exists")
-                 return redirect('registerPage')
+                messages.error(request, "Username already exists")
+                return redirect('registerPage')
 
             if password != password_com: #password not same
-                 messages.error(request, "Password didn't same")
-                 return redirect('registerPage')
+                messages.error(request, "Password didn't same")
+                return redirect('registerPage')
             #บันทำสร้าง user 
             myuser = User.objects.create_user(username, phonenum, password)
             myuser.first_name = name
