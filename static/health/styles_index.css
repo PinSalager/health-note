@@ -1,0 +1,67 @@
+body {
+    background-image: url(https://png.pngtree.com/background/20230516/original/pngtree-dark-gym-where-you-can-take-in-the-surrounding-light-picture-image_2611114.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid gray;
+    width: 500px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 250px;
+    background-color: wheat;
+    border-radius: 10px;
+}
+
+
+.button {
+    background-color: green;
+    border: 2px solid black;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 4px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: white;
+    border:2px solid green;
+    color: black;
+    padding: 10px 24px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.logout-butt {
+    background-color: red;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 4px 2px;
+    border-radius: 4px;
+    border: 2px solid black;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.logout-butt:hover {
+    background-color: white;
+    border:2px solid red;
+    color: black;
+    padding: 5px 12px;
+    text-decoration: underline;
+}
