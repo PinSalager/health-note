@@ -5,32 +5,32 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>Login</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="{% static 'health/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'health/styles_login.css' %}">
   </head>
   <body>
+    <div class="main">
     <h2>Login</h2>
     <form action="/login" method="POST">
         {% csrf_token %}
     <label for="">Username</label>
-    <input type="text" name="username" class="username" required />
+    <input type="text" name="username" class="username" placeholder="Type your username."required />
     <br /><br />
-    <label for="">password</label>
-    <input type="password" name="password" class="password" required />
+    <label for="">Password</label>
+    <input type="password" name="password" class="password" placeholder="Type your password." required />
     <br /><br />
-    <button type="submit">Login</button>
+    <button type="submit" class="loginbutt">Login</button>
     </form>
+    <br /><br />
+    
+    <a href="/back" class="button"> Back </a>
 
-    <form action="/back">
-      <button type="submit">Back</button>
-    </form>
-
-    {% if messages %}
+    {% if messages %}<!--แก้อันนี้ด้วย มันขึ้น logout ตอนกด login-->
             <ul class="messages">
         {% for message in messages %}
-            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li>{% if message.tags %}{% endif %}{{ message }}</li>
         {% endfor %}
             </ul>
         {% endif %}

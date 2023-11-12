@@ -6,7 +6,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.main-menu {
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,30 +20,33 @@ body {
     border-radius: 10px;
 }
 
-.button {
-    background-color: green;
-    border: 1px solid black;
+input {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 72, 0.822);
+}
+
+.loginbutt {
+    background-color: cornflowerblue;
     color: white;
-    padding: 10px 24px;
+    padding: 5px 200px;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 15px;
     margin: 4px 2px;
     border-radius: 4px;
+    border: 1px solid black;
     transition-duration: 0.1s;
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: white;
-    border:1px solid green;
-    color: black;
-    padding: 10px 24px;
-    font-size: 20px;
-    text-decoration: underline;
-}
-
-.logout-butt {
+.button {
     background-color: red;
     color: white;
     padding: 5px 12px;
@@ -57,10 +60,11 @@ body {
     cursor: pointer;
 }
 
-.logout-butt:hover {
+.button:hover {
     background-color: white;
     border:1px solid red;
     color: black;
     padding: 5px 12px;
     text-decoration: underline;
 }
+

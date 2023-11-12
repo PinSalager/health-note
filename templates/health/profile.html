@@ -6,31 +6,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'health/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'health/styles_profile.css' %}">
 </head>
 <body>
-    <h1>Profile</h1>
-    {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
-    <form action="/profile" method="POST">
-        {% csrf_token %}
-    {% comment %} หน้าสำหรับ Profile {% endcomment %}
-        <label for="">Height/CM.</label>
-        <input type="number" step="0.01" name="height" class="height" required>
-<br><br>
-        <label for="">Weight/Kg.</label>
-        <input type="number" step="0.01" name="weight" class="weight" required>
-    <button type="submit">Calculate</button>
-    </form>
-    <h3>BMI : {{bmi}}</h3>
-    <h3>สุขภาพ : {{heal}}</h3>
+    <div class="main">
+        <h1>Profile</h1>
+        {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
+        <form action="/profile" method="POST" >
+            {% csrf_token %}
+        {% comment %} หน้าสำหรับ Profile {% endcomment %}
+            <label for="">Height/CM.</label><br>
+            <input type="number" step="0.01" name="height" class="height" required>
+            <br><br>
+            <label for="">Weight/Kg.</label><br>
+            <input type="number" step="0.01" name="weight" class="weight" required><br>
+            <input type="submit" value="Calculate">
+        </form>
+        <div class="diplay">
+            <h3>BMI : {{bmi}}</h3>
+            <h3>สุขภาพ : {{heal}}</h3>
+        </div>
 
-    <form action="/back">
-        <button type="submit">Back</button>
-    </form>
+        <a href="/back" class="button"> Back </a>
 
-        {% else %} <!--ถ้ายังไม่ได้ login ให้โชว์อันนี้-->
-        Why Are you Here?
-        {% endif %}
-    
+            {% else %} <!--ถ้ายังไม่ได้ login ให้โชว์อันนี้-->
+            Why Are you Here?
+            {% endif %}
+    </div>
 </body>
 </html>

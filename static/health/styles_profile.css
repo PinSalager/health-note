@@ -6,7 +6,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.main-menu {
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,30 +20,38 @@ body {
     border-radius: 10px;
 }
 
-.button {
-    background-color: green;
-    border: 1px solid black;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: olivedrab;
     color: white;
-    padding: 10px 24px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 4px 2px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
     border-radius: 4px;
-    transition-duration: 0.1s;
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: white;
-    border:1px solid green;
-    color: black;
-    padding: 10px 24px;
-    font-size: 20px;
-    text-decoration: underline;
+input[type=submit]:hover {
+    background-color: #45a075;
 }
 
-.logout-butt {
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 400px;
+}
+
+.button {
     background-color: red;
     color: white;
     padding: 5px 12px;
@@ -57,7 +65,7 @@ body {
     cursor: pointer;
 }
 
-.logout-butt:hover {
+.button:hover {
     background-color: white;
     border:1px solid red;
     color: black;
