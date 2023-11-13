@@ -102,7 +102,7 @@ def startandstop(request): #ฟังก์แปลงค่าในปุ่�
 
     return render(request, "health/workoutplan.html",{"name":request.user.email})
 
-def workoutplan(request): #เหลือปุ่ม เปิดปิด
+def result(request): #เหลือปุ่ม เปิดปิด
     if request == 'POST':
         phonenum = request.user.email#เเก้อันนี้เป็นการเอาค่าจาก user phone nuber จาก email
         #สร้างตัวแปรเอาไว้หาความต่างของระยะทาง
@@ -142,8 +142,8 @@ def workoutplan(request): #เหลือปุ่ม เปิดปิด
 
                     # Calculate the distance in meters
                     d = 6378.137 * c * 1000
-                    distance += d
-                    count += 1
+                    distance = distance + d
+                    count = count + 1
                     cal = 13*count/60
                     previous_lat, previous_lng = lat, lng
 
@@ -155,7 +155,7 @@ def workoutplan(request): #เหลือปุ่ม เปิดปิด
                 distance = "Your distance is : " + str(round(distance, 2)) + " meter"
                 cal = "calories you burn today :" + str(round(cal, 2)) + " cal"
                 break
-    return render(request, "health/workoutplan.html",(distance, cal))
+    return render(request, "health/result.html",(distance, cal))
 
 def back(request):
     return render(request, "health/index.html")
