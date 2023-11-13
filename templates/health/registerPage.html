@@ -8,35 +8,30 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{% static 'health/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'health/styles_regis.css' %}">
     </head>
     <body>
+        <div class="main">
         <h2>Register</h2>
     
         <form action="/register_" method="POST">
             {% csrf_token %}
         {% comment %} หน้าสำหรับ register {% endcomment %}
             <label for="">Name</label>
-            <input type="text" name="name" class="name" required>
-<br><br>
+            <input type="text" name="name" class="name" required><br>
             <label for="">Phone Number</label>
-            <input type="text" name="phonenum" class="phonenum" required>
-<br><br>
+            <input type="text" name="phonenum" class="phonenum" required><br>
             <label for="">Username</label>
-            <input type="text" name="username" class="username" required>
-<br><br>
-            <label for="">password</label>
-            <input type="password" name="password" class="password" required>
-<br><br>
+            <input type="text" name="username" class="username" required><br>
+            <label for="">Password</label>
+            <input type="password" name="password" class="password" required><br>
             <label for="">Comfirm your password</label>
-            <input type="password" name="com_pass" class="com_pass" required>
-<br><br>
-            <button type="submit">Register</button>
+            <input type="password" name="com_pass" class="com_pass" required><br>
+            <br>
+            <button type="submit" class="regisbutt">Register</button>
         </form>
-
-        <form action="/back">
-            <button type="submit">Back</button>
-        </form>
+        <br><br><br>
+        <a href="/back" class="button"> Back </a>
 
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -46,5 +41,6 @@
                 </button>
             </div>
     {% endfor %}
+        </div>
     </body>
 </html>

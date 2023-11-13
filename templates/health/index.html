@@ -14,10 +14,12 @@
         <div class="main-menu">
             <h1> Welcome to Health Note</h1>
             {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
-            <h2>Hello, {{name}} <a href="/logout" class="logout-butt"> Logout</a></h2>
+            <h2>Hello, {{name}} </h2>
             <a href="/profile" class="button"> Profile</a>
             <a href="/workoutplan" class="button"> Workout Plan</a>
             <a href="/fitness" class="button"> Nearby Fitness</a>
+            <br /><br />
+            <a href="/logout" class="logout-butt"> Logout</a>
 
             {% else %} <!--ถ้ายังไม่ได้ login ให้โชว์อันนี้-->
             <h2>Please Login</h2>

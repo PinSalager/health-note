@@ -12,10 +12,10 @@ body {
     align-items: center;
     border: 5px solid gray;
     width: 500px;
-    height: 400px;
+    height: 600px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 250px;
+    margin-top: 245px;
     background-color: wheat;
     border-radius: 10px;
 }
@@ -29,10 +29,10 @@ input {
 }
 
 input:focus {
-    background-color: rgba(255, 255, 72, 0.822);
+    background-color: rgba(72, 228, 255, 0.822);
 }
 
-.loginbutt {
+.regisbutt {
     background-color: cornflowerblue;
     color: white;
     padding: 5px 200px;
@@ -46,7 +46,7 @@ input:focus {
     cursor: pointer;
 }
 
-.loginbutt:hover {
+.regisbutt:hover {
     background-color: white;
     color: black;
     padding: 5px 200px;
