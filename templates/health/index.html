@@ -14,7 +14,7 @@
         <div class="main-menu">
             <h1> Welcome to Health Note</h1>
             {% if user.is_authenticated %} <!--ถ้า login สำเร็จ ให้โชว์อันนี้-->
-            <h2>Hello, {{name}} </h2>
+            <h2>Hello, {{request.user.first_name}} </h2>
             <a href="/profile" class="button"> Profile</a>
             <a href="/fitness" class="button"> Nearby Fitness</a>
             <br /><br />
